@@ -32,11 +32,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                 </SheetTrigger>
                 <SheetContent side='left'
                     className='border-none bg-white'>
-                    <Link href='/' className='
-                flex 
-        cursor-pointer
-         items-center
-          gap-1 px-4'>
+                    <Link href='/' className=' flex cursor-pointer items-center gap-1 px-4'>
                         <Image
                             src='/icons/logo.svg'
                             height={34}
@@ -62,20 +58,20 @@ const MobileNav = ({ user }: MobileNavProps) => {
                                                 key={item.label}
                                                 href={item.route}
                                                 className={cn('mobilenav-sheet_close w-full',
-                                                     { 'bg-bank-gradient': isActive })}
+                                                    { 'bg-bank-gradient': isActive })}
                                             >
 
-                                
-                                                    <Image
-                                                        src={item.imgURL}
-                                                        alt={item.label}
-                                                        width={20}
-                                                        height={20}
 
-                                                        className={cn({ 'brightness-[3] invert-0': isActive })}
-                                                    />
+                                                <Image
+                                                    src={item.imgURL}
+                                                    alt={item.label}
+                                                    width={20}
+                                                    height={20}
 
-                                                
+                                                    className={cn({ 'brightness-[3] invert-0': isActive })}
+                                                />
+
+
                                                 <p className={cn('text-16 font-semibold text-black-2 ', { 'text-white': isActive })}>
                                                     {item.label}
                                                 </p>
