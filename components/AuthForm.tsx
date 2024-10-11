@@ -28,7 +28,7 @@ import { signIn, signUp } from '@/lib/actions/user.actions'
 
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null)
-const router=useRouter()
+    const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
 
     const formSchema = authFormSchema(type)
@@ -52,21 +52,22 @@ const router=useRouter()
             //Sign Up with appWrite & create Plaid token
 
             if (type === 'sign-up') {
-                const newUser=await signUp(data)
+                const newUser = await signUp(data)
 
-             setUser(newUser)
+                setUser(newUser)
             }
             if (type === 'sign-in') {
 
-                 const reponse= await signIn({
-                     email:data.email,
-                    password: data.password})
+                const reponse = await signIn({
+                    email: data.email,
+                    password: data.password
+                })
 
 
-                 if (response) {
+                if (response) {
 
-                     router.push('/')
-                 }
+                    router.push('/')
+                }
             }
 
 
@@ -94,7 +95,7 @@ const router=useRouter()
                     />
                     <h1 className='text-26 font-ibm-plex-serif 
                       font-bold text-black-1'>
-                        Bankify
+                        Bankifyy
                     </h1>
 
                 </Link>
