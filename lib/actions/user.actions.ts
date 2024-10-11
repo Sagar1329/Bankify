@@ -1,6 +1,6 @@
 'use server'
 
-export const signIn = async () => {
+export const signIn = async (userData: {email: string, password: string}) => {
     try {
 
     } catch (error) {
