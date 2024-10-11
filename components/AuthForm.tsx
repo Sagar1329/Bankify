@@ -21,12 +21,14 @@ import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { signUp } from '@/lib/actions/user.actions'
 
 
 
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null)
-
+const router=useRouter()
     const [isLoading, setIsLoading] = useState(false)
 
     const formSchema = authFormSchema(type)
@@ -40,14 +42,44 @@ const AuthForm = ({ type }: { type: string }) => {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
 
         setIsLoading(true)
-        console.log("Clicked ")
-        console.log(values)
-        setIsLoading(false)
+
+        try {
+            //Sign Up with appWrite & create Plaid token
+
+            if (type === 'sign-up') {
+                const newUser=await signUp(data)
+
+             setUser(newUser)
+            }
+            if (type === 'sign-in') {
+
+                 const reponse= await signIn({
+                     email:data.email,
+                    password: data.password})
+
+
+                 if (response) {
+
+                     router.push('/')
+                 }
+            }
+
+
+
+        } catch (error) {
+
+            console.log(error)
+        }
+        finally {
+            setIsLoading(false)
+
+        }
+
     }
 
     return (
@@ -120,6 +152,13 @@ const AuthForm = ({ type }: { type: string }) => {
                                         name="address1"
                                         label='Address'
                                         placeholder='Enter your specific address'
+                                    />
+
+                                    <CustomInput
+                                        control={form.control}
+                                        name="city"
+                                        label='City'
+                                        placeholder='Enter your city Name'
                                     />
                                     <div className='flex gap-4'>
 
@@ -196,7 +235,7 @@ const AuthForm = ({ type }: { type: string }) => {
                         <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'}
                             className='form-link'>
                             {type === 'sign-in' ? 'Sign up' : 'Sign in'}
-                        </Link> 
+                        </Link>
 
                     </footer>
 
