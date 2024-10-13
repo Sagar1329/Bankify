@@ -23,6 +23,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { signIn, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 
 
@@ -116,22 +117,17 @@ console.log("Sign in response",response)
                 </div>
             </header>
 
-            {user ? (
+            {/* {user ? ( */}
                 <div className='flex-col flex gap-4'>
-                    {/* Plaid link */}
+                   <PlaidLink user={user} variant='primary'/>
                 </div>
-
-            ) : (
+            {/* ) : ( */}
                 <div >
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-
                             {type === 'sign-up' && (
                                 <>
-
-
                                     <div className='flex  gap-4'>
-
                                         <CustomInput
                                             control={form.control}
                                             name="firstName"
@@ -144,17 +140,13 @@ console.log("Sign in response",response)
                                             label='Last Name'
                                             placeholder='Enter your last  name'
                                         />
-
                                     </div>
-
-
                                     <CustomInput
                                         control={form.control}
                                         name="address1"
                                         label='Address'
                                         placeholder='Enter your specific address'
                                     />
-
                                     <CustomInput
                                         control={form.control}
                                         name="city"
@@ -162,14 +154,12 @@ console.log("Sign in response",response)
                                         placeholder='Enter your city Name'
                                     />
                                     <div className='flex gap-4'>
-
                                         <CustomInput
                                             control={form.control}
                                             name="state"
                                             label='State'
                                             placeholder='Ex Karnataka'
                                         />
-
                                         <CustomInput
                                             control={form.control}
                                             name="postalCode"
@@ -178,7 +168,6 @@ console.log("Sign in response",response)
                                         />
 
                                     </div>
-
                                     <div className='flex gap-4'>
 
                                         <CustomInput
@@ -224,12 +213,10 @@ console.log("Sign in response",response)
                                         :
                                         type === 'sign-in' ? 'Sign in' : 'Sign up'
                                     }
-
                                 </Button>
                             </div>
                         </form>
                     </Form>
-
                     <footer className='flex justify-center gap-1'>
                         <p className='text-14 font-normal text-gray-600'>
                             {type === 'sign-in' ? 'Don’t have an account?' : 'Already have an account?'} </p>
@@ -237,15 +224,9 @@ console.log("Sign in response",response)
                             className='form-link'>
                             {type === 'sign-in' ? 'Sign up' : 'Sign in'}
                         </Link>
-
                     </footer>
-
-
                 </div>
-            )
-
-            }
-
+            {/* ) } */}
         </section>
     )
 }
