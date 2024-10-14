@@ -52,8 +52,21 @@ const AuthForm = ({ type }: { type: string }) => {
         try {
             //Sign Up with appWrite & create Plaid token
 
+
             if (type === 'sign-up') {
-                const newUser = await signUp(data)
+                const userData = {
+                    firstName: data.firstName!,
+                    lastName: data.lastName!,
+                    address1: data.address1!,
+                    city: data.city!,
+                    state: data.state!,
+                    postalCode: data.postalCode!,
+                    dateOfBirth: data.dateOfBirth!,
+                    ssn: data.ssn!,
+                    email: data.email,
+                    password: data.password,
+                }
+                const newUser = await signUp(userData)
 
                 setUser(newUser)
             }
@@ -66,7 +79,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
 
                 if (response) {
-console.log("Sign in response",response)
+                    console.log("Sign in response", response)
                     router.push('/')
                 }
             }
@@ -117,11 +130,11 @@ console.log("Sign in response",response)
                 </div>
             </header>
 
-            {/* {user ? ( */}
+            {user ? (
                 <div className='flex-col flex gap-4'>
-                   <PlaidLink user={user} variant='primary'/>
+                    <PlaidLink user={user} variant='primary' />
                 </div>
-            {/* ) : ( */}
+            ) : (
                 <div >
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -179,7 +192,7 @@ console.log("Sign in response",response)
 
                                         <CustomInput
                                             control={form.control}
-                                            name="adharNumber"
+                                            name="ssn"
                                             label='Adhar  Number'
                                             placeholder='Enter your Adhar No'
                                         />
@@ -226,7 +239,7 @@ console.log("Sign in response",response)
                         </Link>
                     </footer>
                 </div>
-            {/* ) } */}
+            )}
         </section>
     )
 }
