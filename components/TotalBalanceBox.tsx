@@ -3,7 +3,7 @@ import AnimatedCounter from './AnimatedCounter'
 import DoughnutChart from './DoughnutChart'
 
 const TotalBalanceBox = ({
-    accounts = [],
+    accounts =[],
     totalBanks ,
     totalCurrentBalance 
 }:TotlaBalanceBoxProps) => {
