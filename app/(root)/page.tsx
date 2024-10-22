@@ -47,7 +47,7 @@ page={currentPage}/>
             </div>
             <RightSidebar
                 user={loggedIn}
-                transactions={accounts?.transactions}
+                transactions={account?.transactions}
                 banks={accountsData?.slice(0, 2)}
             />
 
