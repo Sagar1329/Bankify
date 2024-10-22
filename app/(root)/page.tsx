@@ -40,7 +40,7 @@ const currentPage=Number(page as string) || 1
 
 < RecentTransactions
  accounts={accountsData} 
-transactions={accounts?.transactions} 
+transactions={account?.transactions} 
 appwriteItemId={appwriteItemId} 
 page={currentPage}/>
          
