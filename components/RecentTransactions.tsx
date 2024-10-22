@@ -17,7 +17,7 @@ const RecentTransactions = ({
         <section className='recent-transactions'>
             <header className='flex items-center justify-between'>
                 <h3 className='recent-transactions-label'>Recent Transactions</h3>
-                <Link href={`/transactions-history/?id=${appwriteItemId}`}
+                <Link href={`/transaction-history/?id=${appwriteItemId}`}
                     className='view-all-btn'
                 >View All
                 </Link>
